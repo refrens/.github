@@ -1,0 +1,13 @@
+{
+    "name": "CommitLint",
+    "description": "lint commit messages with commitlint",
+    "iconName": "commitlint",
+    "categories": [
+        "node.js",
+        "js",
+        "javascript"
+    ],
+    "filePatterns": [
+        "package.json$"
+    ]
+}
