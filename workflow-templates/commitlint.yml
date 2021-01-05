@@ -1,4 +1,4 @@
-name: Lint Commit Messages
+name: CommitLint
 on: [pull_request]
 
 jobs:
