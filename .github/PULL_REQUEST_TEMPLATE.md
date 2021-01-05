@@ -21,13 +21,3 @@ Please remove sections here if not applicable.
 <!-- Please provide screenshots of new/affected pages/views. -->
 
 <!-- If any breaking change add a section -->
-
-<!-- _Please make sure to review and check all of these items:_ -->
-##### Checklist
-<!-- Remove items that do not apply. For completed items, change [ ] to [x]. -->
-
-- [ ] `lint` and `test` checks
-- [ ] Code is commented
-- [ ] documentation is changed or added
-- [ ] Changes are tested in development and screenshots are added here
-- [ ] commit message follows [commit guidelines](https://www.conventionalcommits.org/)
