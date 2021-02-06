@@ -1,5 +1,5 @@
 {
-    "name": "Release to ECR",
-    "description": "creates, tags and pushes docker image to ecr",
-    "iconName": "release"
+  "name": "Release to ECR",
+  "description": "creates, tags and pushes docker image to ecr",
+  "iconName": "release"
 }

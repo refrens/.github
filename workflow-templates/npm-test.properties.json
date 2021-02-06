@@ -1,5 +1,5 @@
 {
-    "name": "NpmTest",
-    "description": "npm test",
-    "iconName": "npm-test"
+  "name": "NpmTest",
+  "description": "npm test",
+  "iconName": "npm-test"
 }

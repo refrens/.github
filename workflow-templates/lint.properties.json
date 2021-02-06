@@ -1,5 +1,5 @@
 {
-    "name": "Lint js",
-    "description": "lint with eslint and prettier",
-    "iconName": "lint"
+  "name": "Lint js",
+  "description": "lint with eslint and prettier",
+  "iconName": "lint"
 }
