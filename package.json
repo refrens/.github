@@ -80,5 +80,10 @@
     "npm": {
       "publish": false
     }
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "node-fetch": "^3.3.2",
+    "octokit": "^3.1.2"
   }
 }
