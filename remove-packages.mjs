@@ -70,12 +70,13 @@ async function fetchPackages(name, pageSize, page) {
  * @param {number} page      - Starting page number (1-indexed).
  * @returns {Promise<number[]>} Flat array of all collected version IDs.
  */
-async function fetchPackageIds(name, pageSize, page) {
+async function fetchPackageIds(name, pageSize, page, pagesBar) {
   const ids = [];
   let currentPage = page;
   while (1) {
     const packages = await fetchPackages(name, pageSize, currentPage);
     ids.push(packages);
+    pagesBar.increment();
     // If fewer results than the page size were returned, we've hit the last page.
     if (packages.length < pageSize) {
       break;
@@ -83,6 +84,7 @@ async function fetchPackageIds(name, pageSize, page) {
       currentPage += 1;
     }
   }
+  pagesBar.setTotal(currentPage - page + 1);
   return ids.flat();
 }
 
@@ -139,8 +141,9 @@ async function deletePackage(name, id) {
  * @returns {Promise<void>}
  */
 async function fetchAndDelete(name, keep, pageSize, multiBar, overallBar) {
+  const pagesBar = multiBar.create(keep / pageSize + 15, 0, { package: name, unit: 'pages' });
   // Start fetching from the page *after* the versions we want to keep.
-  const ids = await fetchPackageIds(name, pageSize, keep / pageSize + 1);
+  const ids = await fetchPackageIds(name, pageSize, keep / pageSize + 1, pagesBar);
   const total = ids.length;
 
   // Create a per-package bar tracking individual version deletions.
@@ -158,6 +161,7 @@ async function fetchAndDelete(name, keep, pageSize, multiBar, overallBar) {
   const succeeded = results.filter((r) => r.status === 'fulfilled' && r.value.success).length;
   const failed = results.length - succeeded;
   multiBar.remove(versionBar);
+  multiBar.remove(pagesBar);
   // multiBar.log(`  ${name}: ${succeeded} deleted, ${failed} failed out of ${total}\n`);
 
   // Tick the overall-packages bar if present.
